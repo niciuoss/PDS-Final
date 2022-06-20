@@ -3,7 +3,7 @@ package com.alu.ufc.AlugaJa.modelsDTO;
 // TODO Refactor
 
 public class ImovelDTO {
-	long id;
+	String id;
 	double mensalidade;
 	String UF;
 	boolean alugado;
@@ -12,17 +12,20 @@ public class ImovelDTO {
 	int quartos;
 	String logradouro;
 	int numero;
+	String cidade;
 
-	/*
-	public ImovelDTO(long id) {
-		this.id = id;
+	//String cpfUsuario;
+
+	public  ImovelDTO(){
+
 	}
- 	*/
-
+	
 	public ImovelDTO(double mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
-					 String logradouro, int numero) {
+					 String logradouro, int numero, String cidade){ //String cpfUsuario
 
+		//this.cpfUsuario = cpfUsuario;
 		this.mensalidade = mensalidade;
+		this.cidade = cidade;
 		this.UF = UF;
 		this.alugado = alugado;
 		this.bairro = bairro;
@@ -30,12 +33,30 @@ public class ImovelDTO {
 		this.quartos = quartos;
 		this.logradouro = logradouro;
 		this.numero = numero;
-		this.id = id++;
 	}
 
-	public long getId() {
+
+	//public String getCpfUsuario() {
+	//	return cpfUsuario;
+	//}
+
+	//public void setCpfUsuario(String cpfUsuario) {
+	//	this.cpfUsuario = cpfUsuario;
+	//}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public String getId() {
 		return id;
 	}
+
+	public void setId(String id) {this.id = id;}
 
 	public double getMensalidade() {
 		return mensalidade;

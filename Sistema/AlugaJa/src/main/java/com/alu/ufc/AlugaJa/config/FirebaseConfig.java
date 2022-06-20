@@ -15,7 +15,6 @@ import com.google.firebase.cloud.FirestoreClient;
 public class FirebaseConfig {
     @Bean
     public Firestore firestore() throws Exception {
-
         FileInputStream serviceAccount = new FileInputStream("./firebase-account-info.json");
         FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
         FirebaseApp firebaseApp = FirebaseApp.initializeApp(options);

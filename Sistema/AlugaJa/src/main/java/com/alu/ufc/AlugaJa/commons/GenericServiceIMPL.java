@@ -25,11 +25,11 @@ public abstract class GenericServiceIMPL<I, O> implements GenericServiceAPI<I, O
 
     @Override
     public String save(I entity) throws Exception {
-        return this.save(entity, null);
+        return this.update(entity, null);
     }
 
     @Override
-    public String save(I entity, String id) throws Exception {
+    public String update(I entity, String id) throws Exception {
         if (id == null || id.length() == 0) {
             return getCollection().add(entity).get().getId();
         }

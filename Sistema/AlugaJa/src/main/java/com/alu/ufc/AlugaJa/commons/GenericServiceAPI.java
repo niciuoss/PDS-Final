@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface GenericServiceAPI<I,O> {
 
-    String save(I entity, String id) throws Exception;
+    String update(I entity, String id) throws Exception;
 
     String save(I entity) throws Exception;
 
@@ -16,5 +16,4 @@ public interface GenericServiceAPI<I,O> {
     Map<String, Object> getAsMap(String id) throws Exception;
 
     List<O> getAll() throws Exception;
-    
 }

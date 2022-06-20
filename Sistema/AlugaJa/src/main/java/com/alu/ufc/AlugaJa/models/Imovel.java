@@ -12,10 +12,14 @@ public class Imovel {
 	String logradouro;
 	int numero;
 
-
+	//String cpfUsuario;
+	String cidade;
+	
 	public Imovel(double mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
-			String logradouro, int numero) {
+			String logradouro, int numero, String cidade){ //String cpfUsuario
 
+		//this.cpfUsuario = cpfUsuario;
+		this.cidade = cidade;
 		this.mensalidade = mensalidade;
 		this.UF = UF;
 		this.alugado = alugado;
@@ -27,23 +31,40 @@ public class Imovel {
 	}
 
 	public double getMensalidade() {
-		return mensalidade;
+
+		return this.mensalidade;
 	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	//public String getCpfUsuario() {
+	//	return cpfUsuario;
+	//}
+
+	//public void setCpfUsuario(String cpfUsuario) {
+	//	this.cpfUsuario = cpfUsuario;
+	//}
 
 	public void setMensalidade(double mensalidade) {
 		this.mensalidade = mensalidade;
 	}
 
 	public String getUF() {
-		return UF;
+		return this.UF;
 	}
 
-	public void setUF(String uF) {
-		UF = uF;
+	public void setUF(String UF) {
+		this.UF = UF;
 	}
 
 	public Boolean getAlugado() {
-		return alugado;
+		return this.alugado;
 	}
 
 	public void setAlugado(Boolean alugado) {
