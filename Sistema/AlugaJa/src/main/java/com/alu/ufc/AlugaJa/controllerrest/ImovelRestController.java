@@ -58,14 +58,14 @@ public class ImovelRestController {
             String res2 = imovelServiceIMPL.validarCriarImovel(imovel);
             if(res2.equals("safe")) {
                 if (res.equals("Não houveram alterações, mude algum campo e tente novamente")) {
-                    return new ResponseEntity<String>(res, HttpStatus.NO_CONTENT);
+                    return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
                 } else {
                     imovelServiceAPI.update(imovel, id);
                     return new ResponseEntity<String>(id, HttpStatus.OK);
                 }
             }
             else{
-                return new ResponseEntity<String>(res2, HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<String>(res2, HttpStatus.NO_CONTENT);
             }
         }
     }
@@ -78,7 +78,7 @@ public class ImovelRestController {
             return new ResponseEntity<String>(id, HttpStatus.CREATED);
         }
         else{
-            return new ResponseEntity<String>(res, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>(res, HttpStatus.NO_CONTENT);
         }
 
     }
@@ -87,7 +87,7 @@ public class ImovelRestController {
     public ResponseEntity<String> delete(@PathVariable String id) throws Exception {
         ImovelDTO imovel = imovelServiceAPI.get(id);
         if(imovel == null){
-            return new ResponseEntity<String>("ID inválido, tente novamente", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("ID inválido, tente novamente", HttpStatus.NO_CONTENT);
         }
         else{
             imovelServiceAPI.delete(id);
