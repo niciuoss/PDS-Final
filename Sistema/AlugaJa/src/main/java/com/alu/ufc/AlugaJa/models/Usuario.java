@@ -9,13 +9,23 @@ public class Usuario {
 	String email;
 	String nome;
 	String senha;
-	public Usuario(String cidade, String contato, int cpf, String email, String nome, String senha) {
+
+	String UF;
+	public Usuario(String cidade, String contato, int cpf, String email, String nome, String senha, String UF) {
 		this.cidade = cidade;
 		this.contato = contato;
 		this.cpf = cpf;
 		this.email = email;
 		this.nome = nome;
 		this.senha = senha;
+		this.UF = UF;
+	}
+	public String getUF() {
+		return UF;
+	}
+
+	public String setUF(String UF){
+		return this.UF = UF;
 	}
 	public String getCidade() {
 		return cidade;

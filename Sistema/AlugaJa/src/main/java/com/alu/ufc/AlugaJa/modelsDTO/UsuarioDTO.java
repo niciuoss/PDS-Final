@@ -11,7 +11,9 @@ public class UsuarioDTO {
 	String email;
 	String nome;
 	String senha;
-	public UsuarioDTO(String cidade, String contato, int cpf, String email, String nome, String senha) {
+
+	String UF;
+	public UsuarioDTO(String cidade, String contato, int cpf, String email, String nome, String senha, String UF) {
 		Id = ultimoId++;
 		this.cidade = cidade;
 		this.contato = contato;
@@ -19,6 +21,15 @@ public class UsuarioDTO {
 		this.email = email;
 		this.nome = nome;
 		this.senha = senha;
+		this.UF = UF;
+	}
+
+	public String getUF(){
+		return UF;
+	}
+
+	public String setUF(String UF){
+		return this.UF = UF;
 	}
 	public long getId() {
 		return Id;
