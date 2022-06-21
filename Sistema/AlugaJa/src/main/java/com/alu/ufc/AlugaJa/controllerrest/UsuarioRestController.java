@@ -26,7 +26,7 @@ public class UsuarioRestController {
 
 
     @Bean
-    CommandLineRunner inicializar(){
+    CommandLineRunner inicializarUsuario(){
         return args -> {
             usuarioServiceIMPL = new UsuarioServiceIMPL();
         };

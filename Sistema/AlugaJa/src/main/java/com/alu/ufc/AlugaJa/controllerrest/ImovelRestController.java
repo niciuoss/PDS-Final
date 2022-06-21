@@ -25,7 +25,7 @@ public class ImovelRestController {
 
 
     @Bean
-    CommandLineRunner inicializar(){
+    CommandLineRunner inicializarImovel(){
         return args -> {
             imovelServiceIMPL = new ImovelServiceIMPL();
         };

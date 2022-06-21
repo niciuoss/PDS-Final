@@ -5,13 +5,14 @@ package com.alu.ufc.AlugaJa.models;
 public class Usuario {
 	String cidade;
 	String contato;
-	int cpf;
+
+	Long cpf;
 	String email;
 	String nome;
 	String senha;
 
 	String UF;
-	public Usuario(String cidade, String contato, int cpf, String email, String nome, String senha, String UF) {
+	public Usuario(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF) {
 		this.cidade = cidade;
 		this.contato = contato;
 		this.cpf = cpf;
@@ -24,42 +25,48 @@ public class Usuario {
 		return UF;
 	}
 
-	public String setUF(String UF){
-		return this.UF = UF;
+	public void setUF(String UF){
+		this.UF = UF;
 	}
 	public String getCidade() {
 		return cidade;
 	}
+
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 	public String getContato() {
 		return contato;
 	}
+
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
-	public int getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
+
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}

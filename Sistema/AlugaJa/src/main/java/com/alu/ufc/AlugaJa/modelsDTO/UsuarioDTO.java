@@ -3,18 +3,19 @@ package com.alu.ufc.AlugaJa.modelsDTO;
 // TODO Refactor
 
 public class UsuarioDTO {
-	static private Long ultimoId = 1L;
-	long Id;
+
+	String id;
 	String cidade;
 	String contato;
-	int cpf;
+	Long cpf;
 	String email;
 	String nome;
 	String senha;
-
 	String UF;
-	public UsuarioDTO(String cidade, String contato, int cpf, String email, String nome, String senha, String UF) {
-		Id = ultimoId++;
+
+	public UsuarioDTO(){}
+
+	public UsuarioDTO(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF) {
 		this.cidade = cidade;
 		this.contato = contato;
 		this.cpf = cpf;
@@ -24,55 +25,66 @@ public class UsuarioDTO {
 		this.UF = UF;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getUF(){
 		return UF;
 	}
 
-	public String setUF(String UF){
-		return this.UF = UF;
-	}
-	public long getId() {
-		return Id;
+	public void setUF(String UF){
+		this.UF = UF;
 	}
 	public String getCidade() {
 		return cidade;
 	}
+
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
 	public String getContato() {
 		return contato;
 	}
+
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
-	public int getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
+
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
 	@Override
 	public String toString() {
-		return "Usuario [Id=" + Id + ", cidade=" + cidade + ", contato=" + contato + ", cpf=" + cpf + ", email=" + email
+		return "Usuario [cidade=" + cidade + ", contato=" + contato + ", cpf=" + cpf + ", email=" + email
 				+ ", nome=" + nome + ", senha=" + senha + "]";
 	}
 	
