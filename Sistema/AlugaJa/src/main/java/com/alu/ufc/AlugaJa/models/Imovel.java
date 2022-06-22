@@ -1,8 +1,7 @@
 package com.alu.ufc.AlugaJa.models;
 
-// TODO Refactor
-
 public class Imovel {
+	long id;
 	double mensalidade;
 	String UF;
 	boolean alugado;
@@ -11,60 +10,45 @@ public class Imovel {
 	int quartos;
 	String logradouro;
 	int numero;
-
-	//String cpfUsuario;
-	String cidade;
 	
-	public Imovel(double mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
-			String logradouro, int numero, String cidade){ //String cpfUsuario
+	public Imovel(double mensalidade, String uF, boolean alugado, String bairro, int banheiros, int quartos,
+			String logradouro, int numero) {
 
-		//this.cpfUsuario = cpfUsuario;
-		this.cidade = cidade;
 		this.mensalidade = mensalidade;
-		this.UF = UF;
+		UF = uF;
 		this.alugado = alugado;
 		this.bairro = bairro;
 		this.banheiros = banheiros;
 		this.quartos = quartos;
 		this.logradouro = logradouro;
 		this.numero = numero;
+		this.id = id++;
+	}
+	
+	
+
+	public long getId() {
+		return id;
 	}
 
 	public double getMensalidade() {
-
-		return this.mensalidade;
+		return mensalidade;
 	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	//public String getCpfUsuario() {
-	//	return cpfUsuario;
-	//}
-
-	//public void setCpfUsuario(String cpfUsuario) {
-	//	this.cpfUsuario = cpfUsuario;
-	//}
 
 	public void setMensalidade(double mensalidade) {
 		this.mensalidade = mensalidade;
 	}
 
 	public String getUF() {
-		return this.UF;
+		return UF;
 	}
 
-	public void setUF(String UF) {
-		this.UF = UF;
+	public void setUF(String uF) {
+		UF = uF;
 	}
 
 	public Boolean getAlugado() {
-		return this.alugado;
+		return alugado;
 	}
 
 	public void setAlugado(Boolean alugado) {
