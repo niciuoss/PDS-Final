@@ -16,13 +16,13 @@ public class UsuarioDTO {
 	String nome;
 	String senha;
 	String UF;
-	List<String> id_imovel;
+	ArrayList<String> id_imovel;
 	Data dataNacimento;
 
 	public UsuarioDTO(){}
 
 	public UsuarioDTO(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, List<String> id_imovel, Data dataNacimento) {
-		this.id_imovel = new ArrayList<String>();
+		this.id_imovel = new ArrayList<>();
 		this.dataNacimento = dataNacimento;
 		this.cidade = cidade;
 		this.contato = contato;
@@ -33,12 +33,12 @@ public class UsuarioDTO {
 		this.UF = UF;
 	}
 
-	public List<String> getId_imovel() {
+	public ArrayList<String> getId_imovel() {
 		return id_imovel;
 	}
 
-	public void setId_imovel(List<String> id_imovel) {
-		this.id_imovel = id_imovel;
+	public void setId_imovel(String id) {
+		this.id_imovel.add(id);
 	}
 
 	public Data getDataNacimento() {

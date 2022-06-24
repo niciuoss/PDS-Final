@@ -83,13 +83,11 @@ public class ImovelRestController {
 
     @PostMapping(value = "usuarios/{id_usuario}/imoveis/")
     public ResponseEntity<String> save2(@RequestBody Imovel imovel, @PathVariable String id_usuario) throws Exception {
-
         if(usuarioServiceAPI.get(id_usuario) != null){
             String res = imovelServiceIMPL.validarCriarImovel(imovel, id_usuario);
             if(res.equals("safe")){
                 String id = imovelServiceAPI.save(imovel);
-                //usuarioServiceIMPL.adicionarImovel(id_usuario, id);
-                usuarioServiceAPI.get(id_usuario).getId_imovel().add(id);
+                usuarioServiceAPI.get(id_usuario).setId_imovel(id);
                 return new ResponseEntity<String>(id, HttpStatus.CREATED);
             }
             else{

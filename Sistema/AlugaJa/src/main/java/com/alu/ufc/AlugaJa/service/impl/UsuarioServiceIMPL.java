@@ -85,11 +85,6 @@ public class UsuarioServiceIMPL extends GenericServiceIMPL<Usuario, UsuarioDTO> 
         }
     }
 
-    public void adicionarImovel(String id_usuario, String id_imovel) throws Exception{
-        get(id_usuario).getId_imovel().add(id_imovel);
-    }
-
-
     @Override
     public CollectionReference getCollection() {
         return firestore.collection("usuarios");
