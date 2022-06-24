@@ -1,8 +1,9 @@
-package com.alu.ufc.AlugaJa.models;
+package com.alu.ufc.AlugaJa.modelsDTO;
 
 // TODO Refactor
 
-public class Imovel {
+public class ImovelDTO {
+	String id;
 	double mensalidade;
 	String UF;
 	boolean alugado;
@@ -11,18 +12,20 @@ public class Imovel {
 	int quartos;
 	String logradouro;
 	int numero;
+	String cidade;
 
 	String id_usuario;
 
-	//String cpfUsuario;
-	String cidade;
+	public  ImovelDTO(){
+
+	}
 	
-	public Imovel(double mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
-			String logradouro, int numero, String cidade, String id_usuario){
+	public ImovelDTO(double mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
+					 String logradouro, int numero, String cidade, String id_usuario){
 
 		this.id_usuario = id_usuario;
-		this.cidade = cidade;
 		this.mensalidade = mensalidade;
+		this.cidade = cidade;
 		this.UF = UF;
 		this.alugado = alugado;
 		this.bairro = bairro;
@@ -33,10 +36,12 @@ public class Imovel {
 	}
 
 
+	public String getId_usuario() {
+		return id_usuario;
+	}
 
-	public double getMensalidade() {
-
-		return this.mensalidade;
+	public void setId_usuario(String id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 	public String getCidade() {
@@ -47,12 +52,14 @@ public class Imovel {
 		this.cidade = cidade;
 	}
 
-	public String getId_usuario() {
-		return id_usuario;
+	public String getId() {
+		return id;
 	}
 
-	public void setId_usuario(String id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setId(String id) {this.id = id;}
+
+	public double getMensalidade() {
+		return mensalidade;
 	}
 
 	public void setMensalidade(double mensalidade) {
@@ -60,15 +67,15 @@ public class Imovel {
 	}
 
 	public String getUF() {
-		return this.UF;
+		return UF;
 	}
 
-	public void setUF(String UF) {
-		this.UF = UF;
+	public void setUF(String uF) {
+		UF = uF;
 	}
 
 	public Boolean getAlugado() {
-		return this.alugado;
+		return alugado;
 	}
 
 	public void setAlugado(Boolean alugado) {

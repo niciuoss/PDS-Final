@@ -1,4 +1,4 @@
-package com.alu.ufc.AlugaJa.models;
+package com.alu.ufc.AlugaJa.modelsDTO;
 
 // TODO Refactor
 
@@ -6,18 +6,22 @@ import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class UsuarioDTO {
+
+	String id;
 	String cidade;
 	String contato;
 	Long cpf;
 	String email;
 	String nome;
 	String senha;
+	String UF;
 	List<String> id_imovel;
 	Data dataNacimento;
 
-	String UF;
-	public Usuario(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, Data dataNacimento, List<String> id_imovel) {
+	public UsuarioDTO(){}
+
+	public UsuarioDTO(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, List<String> id_imovel, Data dataNacimento) {
 		this.id_imovel = new ArrayList<String>();
 		this.dataNacimento = dataNacimento;
 		this.cidade = cidade;
@@ -45,7 +49,14 @@ public class Usuario {
 		this.dataNacimento = dataNacimento;
 	}
 
-	public String getUF() {
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getUF(){
 		return UF;
 	}
 
@@ -94,5 +105,12 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [cidade=" + cidade + ", contato=" + contato + ", cpf=" + cpf + ", email=" + email
+				+ ", nome=" + nome + ", senha=" + senha + "]";
+	}
+	
 	
 }
