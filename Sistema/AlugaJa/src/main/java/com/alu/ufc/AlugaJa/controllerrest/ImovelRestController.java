@@ -1,6 +1,7 @@
 package com.alu.ufc.AlugaJa.controllerrest;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import com.alu.ufc.AlugaJa.models.Usuario;
 import com.alu.ufc.AlugaJa.modelsDTO.UsuarioDTO;
@@ -40,13 +41,16 @@ public class ImovelRestController {
         };
     }
 
-    @GetMapping(value = "/")
-    public List<ImovelDTO> getAll() throws Exception {
-        return imovelServiceAPI.getAll();
+    @GetMapping(value = "imoveis/")
+    public ResponseEntity<List<ImovelDTO>> getAll(@PathVariable String id) throws Exception {
+        return new ResponseEntity<List<ImovelDTO>>(imovelServiceAPI.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<ImovelDTO> find(@PathVariable String id) throws Exception {
+    @GetMapping(value = "usuarios/{id_usuario}/imoveis/{id}")
+    public ResponseEntity<ImovelDTO> find(@PathVariable String id, @PathVariable String id_usuario) throws Exception {
+        if(usuarioServiceAPI.get(id_usuario) == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         ImovelDTO dto = imovelServiceAPI.get(id);
         if(dto == null){
             return new ResponseEntity<ImovelDTO>(HttpStatus.NO_CONTENT);
@@ -58,6 +62,9 @@ public class ImovelRestController {
 
     @PutMapping(value = "usuarios/{id_usuario}/imoveis/{id}")
     public ResponseEntity<String> update(@RequestBody Imovel imovel, @PathVariable String id_usuario, @PathVariable String id) throws Exception {
+        if(usuarioServiceAPI.get(id_usuario) == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         if (id == null || id.length() == 0 || id.equals("null")) {
             return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
         } else {
@@ -95,13 +102,16 @@ public class ImovelRestController {
             }
         }
         else {
-            return new ResponseEntity<String>("Usuario inválido", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<String>("Usuario inválido", HttpStatus.NO_CONTENT);
         }
 
     }
 
-    @DeleteMapping(value = "imovel/{id}")
-    public ResponseEntity<String> delete(@PathVariable String id) throws Exception {
+    @DeleteMapping(value = "usuarios/{id_usuario}/imoveis/{id}")
+    public ResponseEntity<String> delete(@PathVariable String id, @PathVariable String id_usuario) throws Exception {
+        if(usuarioServiceAPI.get(id_usuario) == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         ImovelDTO imovel = imovelServiceAPI.get(id);
         if(imovel == null){
             return new ResponseEntity<String>("ID inválido, tente novamente", HttpStatus.BAD_REQUEST);

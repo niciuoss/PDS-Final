@@ -21,7 +21,7 @@ public class UsuarioDTO {
 
 	public UsuarioDTO(){}
 
-	public UsuarioDTO(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, List<String> id_imovel, Data dataNacimento) {
+	public UsuarioDTO(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, ArrayList<String> id_imovel, Data dataNacimento) {
 		this.id_imovel = new ArrayList<>();
 		this.dataNacimento = dataNacimento;
 		this.cidade = cidade;

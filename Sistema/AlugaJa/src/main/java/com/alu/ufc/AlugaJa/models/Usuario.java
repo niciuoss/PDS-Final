@@ -4,7 +4,7 @@ package com.alu.ufc.AlugaJa.models;
 
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Usuario {
 	String cidade;
@@ -15,9 +15,9 @@ public class Usuario {
 	String senha;
 	ArrayList<String> id_imovel;
 	Data dataNacimento;
-
 	String UF;
-	public Usuario(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, Data dataNacimento, List<String> id_imovel) {
+
+	public Usuario(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, Data dataNacimento, ArrayList<String> id_imovel) {
 		this.id_imovel = new ArrayList<>();
 		this.dataNacimento = dataNacimento;
 		this.cidade = cidade;
