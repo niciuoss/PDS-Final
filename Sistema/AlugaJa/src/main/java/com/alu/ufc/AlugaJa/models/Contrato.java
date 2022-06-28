@@ -1,44 +1,27 @@
 package com.alu.ufc.AlugaJa.models;
 
-//TODO FALTA AJEITAR O BANCO DE DADOS, LÁ TEM O TIPO 'DATA', EU NÃO SEI MEXER COM ISSO
-
-import java.util.ArrayList;
-
 public class Contrato {
-
-    String id;
-    String cpfUsuario;
-
+    String id_usuario;
     String id_Imovel;
-
     String validade;
-
     float valorImovel;
 
     public Contrato() {
     }
 
     public Contrato(String cpfUsuario, String id_Imovel, String validade, float valorImovel) {
-        this.cpfUsuario = cpfUsuario;
+        this.id_usuario = cpfUsuario;
         this.id_Imovel = id_Imovel;
         this.validade = validade;
         this.valorImovel = valorImovel;
     }
 
-    public String getId() {
-        return id;
+    public String getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCpfUsuario() {
-        return cpfUsuario;
-    }
-
-    public void setCpfUsuario(String cpfUsuario) {
-        this.cpfUsuario = cpfUsuario;
+    public void setId_usuario(String id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getId_imovel() {

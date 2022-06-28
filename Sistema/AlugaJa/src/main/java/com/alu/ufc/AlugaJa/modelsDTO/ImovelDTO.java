@@ -4,7 +4,7 @@ package com.alu.ufc.AlugaJa.modelsDTO;
 
 public class ImovelDTO {
 	String id;
-	double mensalidade;
+	float mensalidade;
 	String UF;
 	boolean alugado;
 	String bairro;
@@ -20,7 +20,7 @@ public class ImovelDTO {
 
 	}
 	
-	public ImovelDTO(double mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
+	public ImovelDTO(float mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
 					 String logradouro, int numero, String cidade, String id_usuario){
 
 		this.id_usuario = id_usuario;
@@ -58,11 +58,11 @@ public class ImovelDTO {
 
 	public void setId(String id) {this.id = id;}
 
-	public double getMensalidade() {
+	public float getMensalidade() {
 		return mensalidade;
 	}
 
-	public void setMensalidade(double mensalidade) {
+	public void setMensalidade(float mensalidade) {
 		this.mensalidade = mensalidade;
 	}
 
@@ -70,8 +70,8 @@ public class ImovelDTO {
 		return UF;
 	}
 
-	public void setUF(String uF) {
-		UF = uF;
+	public void setUF(String UF) {
+		this.UF = UF;
 	}
 
 	public Boolean getAlugado() {

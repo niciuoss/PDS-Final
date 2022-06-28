@@ -1,5 +1,8 @@
 package com.alu.ufc.AlugaJa.service.impl;
 
+import com.alu.ufc.AlugaJa.models.Imovel;
+import com.alu.ufc.AlugaJa.modelsDTO.ImovelDTO;
+import com.alu.ufc.AlugaJa.modelsDTO.UsuarioDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +19,10 @@ public class ContratoServiceIMPL extends GenericServiceIMPL<Contrato, ContratoDT
     @Autowired
     private Firestore firestore;
 
-    public String validarCriarContrato (Contrato contrato, String id_imovel) throws Exception {
+    public String validarCriarContrato (Contrato contrato) throws Exception {
         String resultado = new String ("");
 
-        if (contrato.getCpfUsuario() == null) {
+        if (contrato.getId_usuario() == null) {
             resultado = "Você precisa preencher todos os campos para criar o contrato, o campo 'CPF' está vazio" + "\n";
         }
         if (contrato.getId_imovel() == null) {
@@ -43,7 +46,7 @@ public class ContratoServiceIMPL extends GenericServiceIMPL<Contrato, ContratoDT
         String resultado = ("");
         int alt = 0;
 
-        if (dto.getCpfUsuario().equals(contrato.getCpfUsuario())){} else {alt++; resultado = "CPF alterado com sucesso" + '\n';}
+        if (dto.getId_usuario().equals(contrato.getId_usuario())){} else {alt++; resultado = "CPF alterado com sucesso" + '\n';}
         if (dto.getValidade().equals(contrato.getValidade())){} else {alt++; resultado = "Validade alterada com sucesso" + '\n';}
         if (dto.getValorImovel() == (contrato.getValorImovel())){} else {alt++; resultado = "ValorImóvel alterado com sucesso" + '\n';}
 
@@ -55,8 +58,11 @@ public class ContratoServiceIMPL extends GenericServiceIMPL<Contrato, ContratoDT
         }
 
     }
+    public void vincularContrato(Contrato contrato, ImovelDTO imovel) throws Exception{
+        imovel.setAlugado(true);
+    }
     @Override
     public CollectionReference getCollection() {
-        return firestore.collection("contratos");
+        return firestore.collection("contrato");
     }
 }

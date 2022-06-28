@@ -2,23 +2,25 @@ package com.alu.ufc.AlugaJa.models;
 
 // TODO Refactor
 
+import com.google.api.client.util.ArrayMap;
+
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 public class Usuario {
 	String cidade;
 	String contato;
-	Long cpf;
+	String cpf;
 	String email;
 	String nome;
 	String senha;
-	ArrayList<String> id_imovel;
 	Data dataNacimento;
 	String UF;
 
-	public Usuario(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, Data dataNacimento, ArrayList<String> id_imovel) {
-		this.id_imovel = new ArrayList<>();
+	public Usuario(String cidade, String contato, String cpf, String email, String nome, String senha, String UF, Data dataNacimento) {
 		this.dataNacimento = dataNacimento;
 		this.cidade = cidade;
 		this.contato = contato;
@@ -29,13 +31,6 @@ public class Usuario {
 		this.UF = UF;
 	}
 
-	public ArrayList<String> getId_imovel() {
-		return id_imovel;
-	}
-
-	public void setId_imovel(String id) {
-		this.id_imovel.add(id);
-	}
 
 	public Data getDataNacimento() {
 		return dataNacimento;
@@ -66,11 +61,11 @@ public class Usuario {
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public String getEmail() {

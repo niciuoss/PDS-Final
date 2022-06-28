@@ -95,7 +95,6 @@ public class ImovelServiceIMPL extends GenericServiceIMPL<Imovel, ImovelDTO> imp
             return resultado;
         }
     }
-
     @Override
     public CollectionReference getCollection() {
         return firestore.collection("imoveis");

@@ -2,27 +2,28 @@ package com.alu.ufc.AlugaJa.modelsDTO;
 
 // TODO Refactor
 
+import com.google.api.client.util.ArrayMap;
+
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class UsuarioDTO {
 
 	String id;
 	String cidade;
 	String contato;
-	Long cpf;
+	String cpf;
 	String email;
 	String nome;
 	String senha;
 	String UF;
-	ArrayList<String> id_imovel;
 	Data dataNacimento;
 
 	public UsuarioDTO(){}
 
-	public UsuarioDTO(String cidade, String contato, Long cpf, String email, String nome, String senha, String UF, ArrayList<String> id_imovel, Data dataNacimento) {
-		this.id_imovel = new ArrayList<>();
+	public UsuarioDTO(String cidade, String contato, String cpf, String email, String nome, String senha, String UF, Data dataNacimento) {
 		this.dataNacimento = dataNacimento;
 		this.cidade = cidade;
 		this.contato = contato;
@@ -33,13 +34,6 @@ public class UsuarioDTO {
 		this.UF = UF;
 	}
 
-	public ArrayList<String> getId_imovel() {
-		return id_imovel;
-	}
-
-	public void setId_imovel(String id) {
-		this.id_imovel.add(id);
-	}
 
 	public Data getDataNacimento() {
 		return dataNacimento;
@@ -77,11 +71,11 @@ public class UsuarioDTO {
 	public void setContato(String contato) {
 		this.contato = contato;
 	}
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public String getEmail() {

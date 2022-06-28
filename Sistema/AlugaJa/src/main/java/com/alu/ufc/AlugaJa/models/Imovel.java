@@ -3,7 +3,7 @@ package com.alu.ufc.AlugaJa.models;
 // TODO Refactor
 
 public class Imovel {
-	double mensalidade;
+	float mensalidade;
 	String UF;
 	boolean alugado;
 	String bairro;
@@ -14,10 +14,9 @@ public class Imovel {
 
 	String id_usuario;
 
-	//String cpfUsuario;
 	String cidade;
 	
-	public Imovel(double mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
+	public Imovel(float mensalidade, String UF, boolean alugado, String bairro, int banheiros, int quartos,
 			String logradouro, int numero, String cidade, String id_usuario){
 
 		this.id_usuario = id_usuario;
@@ -30,13 +29,6 @@ public class Imovel {
 		this.quartos = quartos;
 		this.logradouro = logradouro;
 		this.numero = numero;
-	}
-
-
-
-	public double getMensalidade() {
-
-		return this.mensalidade;
 	}
 
 	public String getCidade() {
@@ -55,7 +47,11 @@ public class Imovel {
 		this.id_usuario = id_usuario;
 	}
 
-	public void setMensalidade(double mensalidade) {
+	public float getMensalidade(){
+		return mensalidade;
+	}
+
+	public void setMensalidade(float mensalidade) {
 		this.mensalidade = mensalidade;
 	}
 

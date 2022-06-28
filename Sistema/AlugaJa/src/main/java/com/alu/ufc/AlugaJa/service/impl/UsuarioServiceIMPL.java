@@ -1,7 +1,6 @@
 package com.alu.ufc.AlugaJa.service.impl;
 
 import com.alu.ufc.AlugaJa.commons.GenericServiceIMPL;
-import com.alu.ufc.AlugaJa.models.Imovel;
 import com.alu.ufc.AlugaJa.models.Usuario;
 import com.alu.ufc.AlugaJa.modelsDTO.UsuarioDTO;
 import com.alu.ufc.AlugaJa.service.api.UsuarioServiceAPI;
@@ -23,7 +22,7 @@ public class UsuarioServiceIMPL extends GenericServiceIMPL<Usuario, UsuarioDTO> 
         if (usuario.getContato() == null) {
             resultado = "Você precisa preencher todos os campos para adicionar um imóvel, campo 'Bairro' está vazio" + "\n";
         }
-        if (usuario.getCpf() == 0) {
+        if (usuario.getCpf() == null) {
             resultado = "Você precisa preencher todos os campos para adicionar um imóvel, campo 'Banheiros' está vazio" + "\n" ;
         }
         if (usuario.getEmail() == null) {
