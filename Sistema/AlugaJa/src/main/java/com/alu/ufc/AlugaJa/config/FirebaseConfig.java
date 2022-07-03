@@ -1,6 +1,7 @@
 package com.alu.ufc.AlugaJa.config;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,8 @@ import com.google.firebase.cloud.FirestoreClient;
 public class FirebaseConfig {
     @Bean
     public Firestore firestore() throws Exception {
-        FileInputStream serviceAccount = new FileInputStream("./firebase-account-info.json");
+        //FileInputStream serviceAccount = new FileInputStream("/firebase-account-info.json");
+        InputStream serviceAccount = getClass().getClassLoader().getResourceAsStream("firebase-account-info.json");
         FirebaseOptions options = new FirebaseOptions.Builder().setCredentials(GoogleCredentials.fromStream(serviceAccount)).build();
         FirebaseApp firebaseApp = FirebaseApp.initializeApp(options);
 

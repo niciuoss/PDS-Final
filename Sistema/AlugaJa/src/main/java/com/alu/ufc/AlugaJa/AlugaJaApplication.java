@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AlugaJaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AlugaJaApplication.class, args);
+ 		SpringApplication.run(AlugaJaApplication.class, args);
 	}
 
 }

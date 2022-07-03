@@ -1,21 +1,47 @@
-package com.alu.ufc.AlugaJa.service.impl;
+package com.alu.ufc.AlugaJa.service;
 
-import com.alu.ufc.AlugaJa.commons.GenericServiceIMPL;
 import com.alu.ufc.AlugaJa.models.Usuario;
 import com.alu.ufc.AlugaJa.modelsDTO.UsuarioDTO;
-import com.alu.ufc.AlugaJa.service.api.UsuarioServiceAPI;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.Firestore;
+import com.alu.ufc.AlugaJa.repositories.API.UsuarioRepositoryAPI;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class UsuarioServiceIMPL extends GenericServiceIMPL<Usuario, UsuarioDTO> implements UsuarioServiceAPI {
-
+public class UsuarioServiceIMPL {
     @Autowired
-    private Firestore firestore;
+    UsuarioRepositoryAPI usuarioRep;
+    public ResponseEntity<String> update(Usuario usuario, String id) throws Exception {
+        String resultado = ("");
+        int alt = 0;
+        UsuarioDTO dto = usuarioRep.get(id);
+        if(id == null || dto == null){
+            return new ResponseEntity<String>("ID inválido tente novament", HttpStatus.BAD_REQUEST);
+        }
 
-    public String validarCriarUsuario(Usuario usuario) throws Exception {
+        if(dto.getNome().equals(usuario.getNome())){} else { alt++;}
+        if(dto.getCidade().equals(usuario.getCidade())){} else { alt++;}
+        if(dto.getCpf() == usuario.getCpf()){} else { alt++;}
+        if(dto.getSenha() == usuario.getSenha()){} else { alt++;}
+        if(dto.getEmail() == usuario.getEmail()){} else { alt++;}
+        if(dto.getContato() == usuario.getContato()){} else { alt++;}
+        if(dto.getUF().equals(usuario.getUF())){} else { alt++;}
+
+        if(alt == 0){
+            resultado = "Não houveram alterações, mude algum campo e tente novamente";
+            return new ResponseEntity<String>(resultado, HttpStatus.NO_CONTENT);
+        }
+        else{
+            usuarioRep.update(usuario, id);
+            resultado = "alterado com sucesso";
+            return new ResponseEntity<String>(resultado, HttpStatus.OK);
+        }
+    }
+
+    public ResponseEntity<String> save(Usuario usuario) throws Exception {
 
         String resultado = new String("");
 
@@ -57,35 +83,32 @@ public class UsuarioServiceIMPL extends GenericServiceIMPL<Usuario, UsuarioDTO> 
             }
         }
         if (resultado.equals("")) {
-            return "safe";
+            String id = usuarioRep.save(usuario);
+            return new ResponseEntity<String>(id, HttpStatus.CREATED);
         }else{
-            return resultado;
+            return new ResponseEntity<String>(resultado, HttpStatus.BAD_REQUEST);
         }
     }
 
-    public String validarAtualizarUsuario(Usuario usuario, UsuarioDTO dto) throws Exception{
-        String resultado = ("");
-        int alt = 0;
-
-        if(dto.getNome().equals(usuario.getNome())){} else { alt++; resultado = "Bairro alterado com sucesso" + "\n";}
-        if(dto.getCidade().equals(usuario.getCidade())){} else { alt++; resultado = "Cidade alterada com sucesso" + "\n";}
-        if(dto.getCpf() == usuario.getCpf()){} else { alt++; resultado = "Logradouro alterado com sucesso" + "\n";}
-        if(dto.getSenha() == usuario.getSenha()){} else { alt++; resultado = "Mensalidade alterada com sucesso" + "\n";}
-        if(dto.getEmail() == usuario.getEmail()){} else { alt++; resultado = "Quantidade de banheiros alterado com sucesso" + "\n";}
-        if(dto.getContato() == usuario.getContato()){} else { alt++; resultado = "Quantidade de Quartos alterado com sucesso" + "\n";}
-        if(dto.getUF().equals(usuario.getUF())){} else { alt++; resultado = "UF alterado com sucesso" + "\n";}
-
-        if(alt == 0){
-            resultado = "Não houveram alterações, mude algum campo e tente novamente";
-            return resultado;
+    public ResponseEntity<String> delete(String id) throws Exception {
+        UsuarioDTO usuario = usuarioRep.get(id);
+        if(usuario == null || id==null){
+            return new ResponseEntity<String>("ID inválido, tente novamente", HttpStatus.BAD_REQUEST);
         }
         else{
-            return resultado;
+            usuarioRep.delete(id);
+            return new ResponseEntity<String>("Deletado com sucesso",HttpStatus.NO_CONTENT);
         }
     }
 
-    @Override
-    public CollectionReference getCollection() {
-        return firestore.collection("usuarios");
+    public ResponseEntity<UsuarioDTO> get(String id) throws Exception {
+        UsuarioDTO dto = usuarioRep.get(id);
+        if(dto == null || id == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+    public List<UsuarioDTO> getAll() throws Exception {
+        return usuarioRep.getAll();
     }
 }
