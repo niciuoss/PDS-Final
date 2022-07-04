@@ -17,11 +17,9 @@ public class Usuario {
 	String email;
 	String nome;
 	String senha;
-	Data dataNacimento;
 	String UF;
 
-	public Usuario(String cidade, String contato, String cpf, String email, String nome, String senha, String UF, Data dataNacimento) {
-		this.dataNacimento = dataNacimento;
+	public Usuario(String cidade, String contato, String cpf, String email, String nome, String senha, String UF) {
 		this.cidade = cidade;
 		this.contato = contato;
 		this.cpf = cpf;
@@ -29,15 +27,6 @@ public class Usuario {
 		this.nome = nome;
 		this.senha = senha;
 		this.UF = UF;
-	}
-
-
-	public Data getDataNacimento() {
-		return dataNacimento;
-	}
-
-	public void setDataNacimento(Data dataNacimento) {
-		this.dataNacimento = dataNacimento;
 	}
 
 	public String getUF() {

@@ -6,6 +6,7 @@ import com.alu.ufc.AlugaJa.modelsDTO.ImovelDTO;
 import com.alu.ufc.AlugaJa.repositories.API.ContratoRepositoryAPI;
 import com.alu.ufc.AlugaJa.repositories.ContratoRepository;
 import com.alu.ufc.AlugaJa.repositories.ImovelRepository;
+import com.alu.ufc.AlugaJa.repositories.UsuarioRepository;
 import com.google.api.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,37 +30,40 @@ public class ContratoServiceIMPL{
     @Autowired
     ImovelRepository imovelRep;
 
-
-    public ResponseEntity<String> update(Contrato contrato, String id) throws Exception {
-        String resultado = ("");
-        int alt = 0;
-        ContratoDTO dto = contratoRep.get(id);
-        if(id == null || dto == null){
-            return new ResponseEntity<String>("ID inválido tente novament", HttpStatus.BAD_REQUEST);
-        }
-
-        if (dto.getId_usuario().equals(contrato.getId_usuario())){} else {return new ResponseEntity<>("Você não pode alterar um Id locatario do contrato", HttpStatus.FORBIDDEN);}
-        if (dto.getValidade().equals(contrato.getValidade())){} else {alt++;}
-        if (dto.getValorImovel() == (contrato.getValorImovel())){} else {alt++;}
-        if(dto.getId_imovel() == (contrato.getId_imovel())){} else {return new ResponseEntity<>("Você não pode alterar um Id imovel do contrato", HttpStatus.FORBIDDEN);}
+    @Autowired
+    UsuarioRepository usuarioRep;
 
 
-        if(alt == 0){
-            resultado = "Não houveram alterações, mude algum campo e tente novamente";
-            return new ResponseEntity<String>(resultado, HttpStatus.NO_CONTENT);
-        }
-        else{
-            contratoRep.update(contrato, id);
-            resultado = "alterado com sucesso";
-            return new ResponseEntity<String>(resultado, HttpStatus.OK);
-        }
-    }
+//    public ResponseEntity<String> update(Contrato contrato, String id) throws Exception {
+//        String resultado = ("");
+//        int alt = 0;
+//        ContratoDTO dto = contratoRep.get(id);
+//        if(id == null || dto == null){
+//            return new ResponseEntity<String>("ID inválido tente novament", HttpStatus.BAD_REQUEST);
+//        }
+//
+//        if (dto.getId_usuario().equals(contrato.getId_usuario())){} else {return new ResponseEntity<>("Você não pode alterar um Id locatario do contrato", HttpStatus.FORBIDDEN);}
+//        if (dto.getValidade().equals(contrato.getValidade())){} else {alt++;}
+//        if (dto.getValorImovel() == (contrato.getValorImovel())){} else {alt++;}
+//        if(dto.getId_imovel() == (contrato.getId_imovel())){} else {return new ResponseEntity<>("Você não pode alterar um Id imovel do contrato", HttpStatus.FORBIDDEN);}
+//
+//
+//        if(alt == 0){
+//            resultado = "Não houveram alterações, mude algum campo e tente novamente";
+//            return new ResponseEntity<String>(resultado, HttpStatus.NO_CONTENT);
+//        }
+//        else{
+//            contratoRep.update(contrato, id);
+//            resultado = "alterado com sucesso";
+//            return new ResponseEntity<String>(resultado, HttpStatus.OK);
+//        }
+//    }
 
     public ResponseEntity<String> save(Contrato contrato) throws Exception {
 
         String resultado = new String("");
 
-        if (contrato.getId_usuario() == null) {
+        if (contrato.getId_locatario() == null) {
             resultado = "Você precisa preencher todos os campos para criar o contrato, o campo 'CPF' está vazio" + "\n";
         }
         if (contrato.getId_imovel() == null) {
@@ -70,6 +74,14 @@ public class ContratoServiceIMPL{
         }
         if (contrato.getValorImovel() == 0) {
             resultado = "Você precisa preencher todos os campos para criar o contrato, o campo 'ValorImovel' está vazio" + "\n";
+        }
+
+        if(usuarioRep.get(contrato.getId_locatario()) == null){
+            resultado = "Seu locatario não existe no nosso sistema" + "\n";
+        }
+
+        if(imovelRep.get(contrato.getId_imovel())== null){
+            resultado = "Seu imóvel ainda não foi adicionado no nosso sistema" + "\n";
         }
 
         if (resultado.equals("")) {
@@ -88,8 +100,17 @@ public class ContratoServiceIMPL{
     public ResponseEntity<String> delete(String id_contrato, String id_imovel, String id_locador) throws Exception {
         ContratoDTO contrato = contratoRep.get(id_contrato);
         if(contrato == null || id_contrato==null){
-            return new ResponseEntity<String>("ID inválido, tente novamente", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("ID do contrato inválido, tente novamente", HttpStatus.NOT_FOUND);
         }
+
+        if(id_imovel == null || imovelRep.get(id_imovel) == null){
+            return new ResponseEntity<>("ID do imóvel inválido", HttpStatus.BAD_REQUEST);
+        }
+
+        if(id_locador == null || usuarioRep.get(id_locador) == null){
+            return new ResponseEntity<>("ID do locador inválido", HttpStatus.BAD_REQUEST);
+        }
+
         List<ImovelDTO> imoveis = imovelRep.getAll();
         for(int i=0; imoveis.size()>i; i++){
             if(imoveis.get(i).getId_usuario().equals(id_locador)){
@@ -107,24 +128,16 @@ public class ContratoServiceIMPL{
         return new ResponseEntity<>("Você não pode excluir imóveis que não são seus", HttpStatus.FORBIDDEN);
     }
 
-//    public ResponseEntity<ContratoDTO> get(String id) throws Exception {
-//        ContratoDTO dto = contratoRep.get(id);
-//        if(dto == null || id == null){
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        return new ResponseEntity<>(dto, HttpStatus.OK);
-//    }
-//
-//    public List<ContratoDTO> getAll() throws Exception {
-//        return contratoRep.getAll();
-//    }
-
-
     public ResponseEntity<List<ContratoDTO>>allContratos(String id_locador) throws Exception{
         List<ContratoDTO> all = contratoRep.getAll();
         List<ImovelDTO> idImovel = imovelRep.getAll();
         List<String> imoveis = new ArrayList<>();
         List<ContratoDTO> saida = new ArrayList<>();
+
+        if(id_locador == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
         for(int i=0; i<idImovel.size(); i++){
             if(idImovel.get(i).getId_usuario().equals(id_locador)){
                 imoveis.add(idImovel.get(i).getId());

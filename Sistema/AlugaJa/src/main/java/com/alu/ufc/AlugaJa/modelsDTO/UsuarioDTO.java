@@ -19,12 +19,10 @@ public class UsuarioDTO {
 	String nome;
 	String senha;
 	String UF;
-	Data dataNacimento;
 
 	public UsuarioDTO(){}
 
-	public UsuarioDTO(String cidade, String contato, String cpf, String email, String nome, String senha, String UF, Data dataNacimento) {
-		this.dataNacimento = dataNacimento;
+	public UsuarioDTO(String cidade, String contato, String cpf, String email, String nome, String senha, String UF) {
 		this.cidade = cidade;
 		this.contato = contato;
 		this.cpf = cpf;
@@ -34,14 +32,6 @@ public class UsuarioDTO {
 		this.UF = UF;
 	}
 
-
-	public Data getDataNacimento() {
-		return dataNacimento;
-	}
-
-	public void setDataNacimento(Data dataNacimento) {
-		this.dataNacimento = dataNacimento;
-	}
 
 	public String getId() {
 		return id;

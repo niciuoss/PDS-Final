@@ -18,30 +18,30 @@ public class ImovelServiceIMPL{
     @Autowired
     ImovelRepository imovelRep;
 
-    public ResponseEntity<String> update(Imovel imovel, String id) throws Exception {
+    public ResponseEntity<String> update(Imovel imovel, String id_imovel) throws Exception {
         String resultado = ("");
         int alt = 0;
-        ImovelDTO dto = imovelRep.get(id);
-        if(id == null || dto == null){
+        ImovelDTO dto = imovelRep.get(id_imovel);
+        if(id_imovel == null || dto == null){
             return new ResponseEntity<String>("ID inválido tente novament", HttpStatus.BAD_REQUEST);
         }
 
-        if(dto.getBairro().equals(imovel.getBairro())){} else { alt++;}
-        if(dto.getCidade().equals(imovel.getCidade())){} else { alt++;}
-        if(dto.getLogradouro().equals(imovel.getLogradouro())){} else { alt++;}
-        if(dto.getMensalidade() == imovel.getMensalidade()){} else { alt++;}
-        if(dto.getBanheiros() == imovel.getBanheiros()){} else { alt++;}
-        if(dto.getQuartos() == imovel.getQuartos()){} else { alt++;}
-        if(dto.getNumero() == imovel.getNumero()){} else { alt++;}
-        if(dto.getUF().equals(imovel.getUF())){} else { alt++;}
-        if(dto.getAlugado().equals(imovel.getAlugado())){} else { alt++;}
+        if(!dto.getBairro().equals(imovel.getBairro())){ alt++;}
+        if(!dto.getCidade().equals(imovel.getCidade())){ alt++;}
+        if(!dto.getLogradouro().equals(imovel.getLogradouro())){ alt++;}
+        if(dto.getMensalidade() != imovel.getMensalidade()){ alt++;}
+        if(dto.getBanheiros() != imovel.getBanheiros()){ alt++;}
+        if(dto.getQuartos() != imovel.getQuartos()){ alt++;}
+        if(dto.getNumero() != imovel.getNumero()){ alt++;}
+        if(!dto.getUF().equals(imovel.getUF())){ alt++;}
+        if(!dto.getAlugado().equals(imovel.getAlugado())){ alt++;}
 
         if(alt == 0){
             resultado = "Não houveram alterações, mude algum campo e tente novamente";
             return new ResponseEntity<String>(resultado, HttpStatus.NO_CONTENT);
         }
         else{
-            imovelRep.update(imovel, id);
+            imovelRep.update(imovel, id_imovel);
             resultado = "alterado com sucesso";
             return new ResponseEntity<String>(resultado, HttpStatus.OK);
         }

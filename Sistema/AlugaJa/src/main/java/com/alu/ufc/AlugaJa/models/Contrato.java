@@ -1,7 +1,7 @@
 package com.alu.ufc.AlugaJa.models;
 
 public class Contrato {
-    String id_usuario;
+    String id_locatario;
     String id_Imovel;
     String validade;
     float valorImovel;
@@ -9,19 +9,19 @@ public class Contrato {
     public Contrato() {
     }
 
-    public Contrato(String cpfUsuario, String id_Imovel, String validade, float valorImovel) {
-        this.id_usuario = cpfUsuario;
+    public Contrato(String id_locatario, String id_Imovel, String validade, float valorImovel) {
+        this.id_locatario = id_locatario;
         this.id_Imovel = id_Imovel;
         this.validade = validade;
         this.valorImovel = valorImovel;
     }
 
-    public String getId_usuario() {
-        return id_usuario;
+    public String getId_locatario() {
+        return id_locatario;
     }
 
-    public void setId_usuario(String id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId_locatario(String id_usuario) {
+        this.id_locatario = id_locatario;
     }
 
     public String getId_imovel() {
