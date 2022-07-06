@@ -1,7 +1,5 @@
 package com.alu.ufc.AlugaJa.models;
 
-// TODO Refactor
-
 public class Imovel {
 	float mensalidade;
 	String UF;

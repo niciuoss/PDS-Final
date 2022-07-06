@@ -13,7 +13,6 @@ public class ImovelDTO {
 	String logradouro;
 	int numero;
 	String cidade;
-
 	String id_usuario;
 
 	public  ImovelDTO(){

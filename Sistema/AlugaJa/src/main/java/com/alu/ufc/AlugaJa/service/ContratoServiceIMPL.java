@@ -63,25 +63,30 @@ public class ContratoServiceIMPL{
 
         String resultado = new String("");
 
-        if (contrato.getId_locatario() == null) {
-            resultado = "Você precisa preencher todos os campos para criar o contrato, o campo 'CPF' está vazio" + "\n";
-        }
         if (contrato.getId_imovel() == null) {
             resultado = "Não foi possível registrar o imóvel. MOTIVO: Imóvel não encontrado no banco de dados" + "\n";
         }
-        if (contrato.getValidade() == null) {
+        if (contrato.getValidade() == 0) {
             resultado = "Você precisa preencher todos os campos para criar o contrato, o campo 'Validade' está vazio" + "\n";
         }
-        if (contrato.getValorImovel() == 0) {
+        if (contrato.getValor_imovel() == 0) {
             resultado = "Você precisa preencher todos os campos para criar o contrato, o campo 'ValorImovel' está vazio" + "\n";
         }
 
-        if(usuarioRep.get(contrato.getId_locatario()) == null){
+        if(contrato.getId_usuario() == null){
+            return new ResponseEntity<>("Locatario inexistente", HttpStatus.BAD_REQUEST);
+        }
+
+        if(usuarioRep.get(contrato.getId_usuario()) == null){
             resultado = "Seu locatario não existe no nosso sistema" + "\n";
         }
 
         if(imovelRep.get(contrato.getId_imovel())== null){
             resultado = "Seu imóvel ainda não foi adicionado no nosso sistema" + "\n";
+        }
+
+        if(contrato.getValidade() < 6){
+            resultado = "A válidade de um contrato deve ser no mínimo 6 meses" + "\n";
         }
 
         if (resultado.equals("")) {

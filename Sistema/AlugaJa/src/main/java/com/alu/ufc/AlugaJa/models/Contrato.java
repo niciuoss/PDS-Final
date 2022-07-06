@@ -1,27 +1,27 @@
 package com.alu.ufc.AlugaJa.models;
 
 public class Contrato {
-    String id_locatario;
+    String id_usuario;
     String id_Imovel;
-    String validade;
-    float valorImovel;
+    int validade;
+    float valor_imovel;
 
     public Contrato() {
     }
 
-    public Contrato(String id_locatario, String id_Imovel, String validade, float valorImovel) {
-        this.id_locatario = id_locatario;
+    public Contrato(String id_usuario, String id_Imovel, int validade, float valor_imovel) {
+        this.id_usuario = id_usuario;
         this.id_Imovel = id_Imovel;
         this.validade = validade;
-        this.valorImovel = valorImovel;
+        this.valor_imovel = valor_imovel;
     }
 
-    public String getId_locatario() {
-        return id_locatario;
+    public String getId_usuario() {
+        return id_usuario;
     }
 
-    public void setId_locatario(String id_usuario) {
-        this.id_locatario = id_locatario;
+    public void setId_usuario(String id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getId_imovel() {
@@ -32,19 +32,19 @@ public class Contrato {
         this.id_Imovel = id_Imovel;
     }
 
-    public String getValidade() {
+    public int getValidade() {
         return validade;
     }
 
-    public void setValidade(String validade) {
+    public void setValidade(int validade) {
         this.validade = validade;
     }
 
-    public float getValorImovel() {
-        return valorImovel;
+    public float getValor_imovel() {
+        return valor_imovel;
     }
 
-    public void setValorImovel(float valorImovel) {
-        this.valorImovel = valorImovel;
+    public void setValor_imovel(float valor_imovel) {
+        this.valor_imovel = valor_imovel;
     }
 }
